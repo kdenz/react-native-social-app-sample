@@ -1,49 +1,103 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React from "react";
+import { Dimensions } from "react-native";
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import { Provider } from "unstated";
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+import {
+  createStackNavigator,
+  createBottomTabNavigator
+} from "react-navigation";
+
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import PostScreen from "./src/screens/PostScreen";
+import AlbumScreen from "./src/screens/AlbumScreen";
+import TaskScreen from "./src/screens/TaskScreen";
+import FriendScreen from "./src/screens/FriendScreen";
+import ProfileScreen from "./src/screens/ProfileScreen";
+import theme from "./src/styles/theme";
+
+const { height, width } = Dimensions.get("window");
+
+global.screenHeight = height;
+global.screenWidth = width;
+const bottomNavIconMap = {
+  Posts: "message-outline",
+  Albums: "image-multiple",
+  Tasks: "checkbox-marked-outline",
+  Friends: "account-multiple",
+  Profile: "account"
+};
+
+const BottomTabNav = createBottomTabNavigator(
+  {
+    Posts: {
+      screen: PostScreen
+    },
+    Albums: {
+      screen: AlbumScreen
+    },
+    Tasks: {
+      screen: TaskScreen
+    },
+    Friends: {
+      screen: FriendScreen
+    },
+    Profile: {
+      screen: ProfileScreen
+    }
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        // Determines which icon to show and what color it is
+        const { routeName } = navigation.state;
+        const iconName = bottomNavIconMap[routeName];
+
+        return (
+          <Icon
+            name={iconName}
+            color={tintColor}
+            size={25}
+            style={{ marginTop: 5 }}
+          />
+        );
+      }
+    }),
+    tabBarOptions: {
+      activeTintColor: "black",
+      inactiveTintColor: "gray",
+      activeBackgroundColor: theme.SECONDARY_COLOR,
+      inactiveBackgroundColor: theme.SECONDARY_COLOR
+    }
+  }
+);
+
+const AppNavigator = createStackNavigator({
+  Main: {
+    screen: BottomTabNav,
+    navigationOptions: ({ navigation }) => ({ header: null })
+  }
+
+  // SetHabit: {
+  //   screen: SetHabitScreen,
+  //   navigationOptions: ({ navigation }) => ({
+  //     title: "Set Your Habit Goal",
+  //     headerTintColor: theme.PRIMARY_COLOR,
+  //     // headerTintColor: "white",
+  //     headerStyle: {
+  //       backgroundColor: theme.SECONDARY_COLOR,
+  //       borderBottomColor: theme.SECONDARY_COLOR
+  //     }
+  //   })
+  // }
 });
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+      <Provider>
+        <AppNavigator />
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
