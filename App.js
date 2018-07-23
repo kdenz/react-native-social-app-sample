@@ -67,7 +67,10 @@ const BottomTabNav = createBottomTabNavigator(
       activeTintColor: "black",
       inactiveTintColor: "gray",
       activeBackgroundColor: theme.SECONDARY_COLOR,
-      inactiveBackgroundColor: theme.SECONDARY_COLOR
+      inactiveBackgroundColor: theme.SECONDARY_COLOR,
+      labelStyle: {
+        marginBottom: 5
+      }
     }
   }
 );

@@ -1,12 +1,31 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
+import { Subscribe } from "unstated";
+import PostStore from "../stores/PostStore";
+import ScreenContainer from "../components/ScreenContainer";
 
-export default class PostScreen extends Component {
+export default class PostScreenContainer extends Component {
   render() {
     return (
-      <View>
+      <Subscribe to={[PostStore]}>
+        {postStore => <PostScreen postStore={postStore} />}
+      </Subscribe>
+    );
+  }
+}
+
+class PostScreen extends Component {
+  componentDidMount() {
+    const { postStore } = this.props;
+    // postStore.fetchPosts()
+  }
+
+  render() {
+    const { postStore } = this.props;
+    return (
+      <ScreenContainer title={"Posts"}>
         <Text> textInComponent </Text>
-      </View>
+      </ScreenContainer>
     );
   }
 }
