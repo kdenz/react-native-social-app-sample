@@ -3,6 +3,7 @@ import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import theme from "../styles/theme";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import PhotoThumbnails from "./PhotoThumbnails";
+import UserBadge from "./UserBadge";
 
 export default class Post extends Component {
   onCommentPress = () => {
@@ -27,23 +28,11 @@ export default class Post extends Component {
           <Text style={styles.desc}> {desc} </Text>
         )}
 
-        <View style={styles.userContainer}>
-          <View style={styles.userAvatar}>
-            <Icon
-              name={"account"}
-              color={"grey"}
-              size={40}
-              style={{ marginTop: 5 }}
-            />
-          </View>
-          <View style={styles.userInfo}>
-            <Text style={styles.userName}>{userName}</Text>
-            <Text style={styles.userCompany}>{userCompany}</Text>
-            <Text style={styles.userCompanyCatchPhrase}>
-              {userCompanyCatchPhrase}
-            </Text>
-          </View>
-        </View>
+        <UserBadge
+          userName={userName}
+          userCompany={userCompany}
+          userCompanyCatchPhrase={userCompanyCatchPhrase}
+        />
         {photos ? null : (
           <TouchableOpacity onPress={this.onCommentPress}>
             <View style={styles.commentButton}>
@@ -76,26 +65,6 @@ const styles = StyleSheet.create({
     fontSize: theme.FONT_SIZE_MEDIUM,
     marginTop: 10
   },
-  userContainer: {
-    flexDirection: "row",
-    marginTop: 20
-  },
-  userAvatar: {
-    flex: 2,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  userInfo: {
-    flex: 8
-  },
-  userName: {
-    fontSize: theme.FONT_SIZE_MEDIUM
-  },
-  userCompany: {
-    fontSize: theme.FONT_SIZE_SMALL,
-    color: "grey"
-  },
-  userCompanyCatchPhrase: { fontSize: theme.FONT_SIZE_SMALL, color: "grey" },
   commentButton: {
     alignItems: "center",
     justifyContent: "center",
