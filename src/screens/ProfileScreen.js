@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import UserProfile from "../components/UserProfile";
 
 export default class ProfileScreen extends Component {
   render() {
     return (
-      <View>
-        <Text> textInComponent </Text>
-      </View>
+      <UserProfile
+        name={"Kaiden Sin"}
+        companyName={"Awesomeness Ltd."}
+        companyCatchPhrase={"I love to develop awesome products"}
+        email={"kaiden@awesome.com"}
+        phone={"66666666"}
+        address={"Douglas Extension, Suite 846, McKenziehaven"}
+      />
     );
   }
 }
