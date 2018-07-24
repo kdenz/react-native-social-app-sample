@@ -1,7 +1,17 @@
 import { Container } from "unstated";
+import API from "../services/API";
 
-export default class PostStore extends Container {
+class PostStore extends Container {
   state = {
-    posts: ["s"]
+    posts: []
+  };
+
+  loadPostList = async () => {
+    const result = await API.fetchPostList();
+    this.setState({
+      posts: result
+    });
   };
 }
+
+export default new PostStore();
