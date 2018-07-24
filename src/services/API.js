@@ -9,6 +9,14 @@ class API {
     return this.getFromServer(endpoint + "posts");
   };
 
+  fetchAlbums = async () => {
+    return this.getFromServer(endpoint + "albums");
+  };
+
+  fetchPhotos = async () => {
+    return this.getFromServer(endpoint + "photos");
+  };
+
   getFromServer = async uri => {
     try {
       let response = await fetch(uri, {
