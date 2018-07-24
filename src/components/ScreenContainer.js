@@ -4,9 +4,9 @@ import theme from "../styles/theme";
 
 export default class ScreenContainer extends Component {
   render() {
-    const { title, children } = this.props;
+    const { title, children, style } = this.props;
     return (
-      <ScrollView style={styles.container}>
+      <ScrollView style={[styles.container, style ? style : {}]}>
         {title && <Text style={styles.title}>{title}</Text>}
         {children}
       </ScrollView>
