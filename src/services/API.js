@@ -17,6 +17,10 @@ class API {
     return this.getFromServer(endpoint + "photos");
   };
 
+  fetchTodos = async () => {
+    return this.getFromServer(endpoint + "todos");
+  };
+
   getFromServer = async uri => {
     try {
       let response = await fetch(uri, {
