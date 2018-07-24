@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import theme from "../styles/theme";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import PhotoThumbnails from "./PhotoThumbnails";
 
 export default class Post extends Component {
   onCommentPress = () => {
@@ -14,12 +15,18 @@ export default class Post extends Component {
       desc,
       userName,
       userCompany,
-      userCompanyCatchPhrase
+      userCompanyCatchPhrase,
+      photos
     } = this.props;
     return (
       <View style={styles.container}>
         <Text style={styles.title}> {title} </Text>
-        <Text style={styles.desc}> {desc} </Text>
+        {photos ? (
+          <PhotoThumbnails photos={photos} />
+        ) : (
+          <Text style={styles.desc}> {desc} </Text>
+        )}
+
         <View style={styles.userContainer}>
           <View style={styles.userAvatar}>
             <Icon
@@ -37,11 +44,13 @@ export default class Post extends Component {
             </Text>
           </View>
         </View>
-        <TouchableOpacity onPress={this.onCommentPress}>
-          <View style={styles.commentButton}>
-            <Text style={styles.commentText}>Comment(s)</Text>
-          </View>
-        </TouchableOpacity>
+        {photos ? null : (
+          <TouchableOpacity onPress={this.onCommentPress}>
+            <View style={styles.commentButton}>
+              <Text style={styles.commentText}>Comment(s)</Text>
+            </View>
+          </TouchableOpacity>
+        )}
       </View>
     );
   }
