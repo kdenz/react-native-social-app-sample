@@ -9,6 +9,13 @@ class API {
     return this.getFromServer(endpoint + "posts");
   };
 
+  fetchComments = async postId => {
+    let url = endpoint + "comments";
+    url += postId ? `?postId=${postId}` : "";
+    console.warn(url);
+    return this.getFromServer(url);
+  };
+
   fetchAlbums = async () => {
     return this.getFromServer(endpoint + "albums");
   };
@@ -30,6 +37,7 @@ class API {
           "Content-Type": "application/json"
         }
       });
+
       let responseJson = await response.json();
       return responseJson;
     } catch (err) {
