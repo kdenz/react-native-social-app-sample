@@ -58,6 +58,7 @@ class PostScreen extends Component {
           data={postStore.state.posts}
           renderItem={this.renderItem}
           style={{ marginTop: 10 }}
+          keyExtractor={(item, index) => index.toString()}
         />
       </ScreenContainer>
     );
