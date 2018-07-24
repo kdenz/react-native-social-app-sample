@@ -16,6 +16,7 @@ import FriendScreen from "./src/screens/FriendScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import theme from "./src/styles/theme";
 import FriendStore from "./src/stores/FriendStore";
+import PostDetailScreen from "./src/screens/PostDetailScreen";
 
 const { height, width } = Dimensions.get("window");
 
@@ -80,20 +81,19 @@ const AppNavigator = createStackNavigator({
   Main: {
     screen: BottomTabNav,
     navigationOptions: ({ navigation }) => ({ header: null })
+  },
+  PostDetail: {
+    screen: PostDetailScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: "Post Detail",
+      headerTintColor: theme.PRIMARY_COLOR,
+      // headerTintColor: "white",
+      headerStyle: {
+        backgroundColor: theme.SECONDARY_COLOR,
+        borderBottomColor: theme.SECONDARY_COLOR
+      }
+    })
   }
-
-  // SetHabit: {
-  //   screen: SetHabitScreen,
-  //   navigationOptions: ({ navigation }) => ({
-  //     title: "Set Your Habit Goal",
-  //     headerTintColor: theme.PRIMARY_COLOR,
-  //     // headerTintColor: "white",
-  //     headerStyle: {
-  //       backgroundColor: theme.SECONDARY_COLOR,
-  //       borderBottomColor: theme.SECONDARY_COLOR
-  //     }
-  //   })
-  // }
 });
 
 export default class App extends React.Component {
