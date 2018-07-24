@@ -12,7 +12,6 @@ class API {
   fetchComments = async postId => {
     let url = endpoint + "comments";
     url += postId ? `?postId=${postId}` : "";
-    console.warn(url);
     return this.getFromServer(url);
   };
 
