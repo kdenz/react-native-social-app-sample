@@ -15,6 +15,7 @@ import TaskScreen from "./src/screens/TaskScreen";
 import FriendScreen from "./src/screens/FriendScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 import theme from "./src/styles/theme";
+import FriendStore from "./src/stores/FriendStore";
 
 const { height, width } = Dimensions.get("window");
 
@@ -96,6 +97,9 @@ const AppNavigator = createStackNavigator({
 });
 
 export default class App extends React.Component {
+  componentDidMount() {
+    FriendStore.initializeFriendList();
+  }
   render() {
     return (
       <Provider>
