@@ -17,6 +17,7 @@ import ProfileScreen from "./src/screens/ProfileScreen";
 import theme from "./src/styles/theme";
 import FriendStore from "./src/stores/FriendStore";
 import PostDetailScreen from "./src/screens/PostDetailScreen";
+import AlbumDetailScreen from "./src/screens/AlbumDetailScreen";
 
 const { height, width } = Dimensions.get("window");
 
@@ -86,6 +87,18 @@ const AppNavigator = createStackNavigator({
     screen: PostDetailScreen,
     navigationOptions: ({ navigation }) => ({
       title: "Post Detail",
+      headerTintColor: theme.PRIMARY_COLOR,
+      // headerTintColor: "white",
+      headerStyle: {
+        backgroundColor: theme.SECONDARY_COLOR,
+        borderBottomColor: theme.SECONDARY_COLOR
+      }
+    })
+  },
+  AlbumDetail: {
+    screen: AlbumDetailScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: "Album Detail",
       headerTintColor: theme.PRIMARY_COLOR,
       // headerTintColor: "white",
       headerStyle: {
