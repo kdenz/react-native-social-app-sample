@@ -17,7 +17,8 @@ export default class Post extends Component {
       userName,
       userCompany,
       userCompanyCatchPhrase,
-      photos
+      photos,
+      hideCommentButton
     } = this.props;
     return (
       <View style={styles.container}>
@@ -33,7 +34,7 @@ export default class Post extends Component {
           userCompany={userCompany}
           userCompanyCatchPhrase={userCompanyCatchPhrase}
         />
-        {photos ? null : (
+        {photos || hideCommentButton ? null : (
           <TouchableOpacity onPress={this.onCommentPress}>
             <View style={styles.commentButton}>
               <Text style={styles.commentText}>Comment(s)</Text>
