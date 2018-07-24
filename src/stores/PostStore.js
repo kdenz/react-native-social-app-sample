@@ -3,7 +3,9 @@ import API from "../services/API";
 
 class PostStore extends Container {
   state = {
-    posts: []
+    posts: [],
+    currentPost: {},
+    currentPostComments: []
   };
 
   loadPostList = async () => {
@@ -11,6 +13,18 @@ class PostStore extends Container {
     this.setState({
       posts: result
     });
+  };
+
+  loadPostComments = async postId => {
+    const result = await API.fetchComments(postId);
+    this.setState({
+      currentPostComments: result
+    });
+  };
+
+  setCurrentPost = postId => {
+    const post = this.state.posts.find(item => item.id === postId);
+    this.setState({ currentPost: post });
   };
 }
 

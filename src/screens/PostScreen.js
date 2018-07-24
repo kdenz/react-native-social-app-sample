@@ -11,7 +11,11 @@ export default class PostScreenContainer extends Component {
     return (
       <Subscribe to={[PostStore, FriendStore]}>
         {(postStore, friendStore) => (
-          <PostScreen postStore={postStore} friendStore={friendStore} />
+          <PostScreen
+            postStore={postStore}
+            friendStore={friendStore}
+            {...this.props}
+          />
         )}
       </Subscribe>
     );
@@ -20,9 +24,18 @@ export default class PostScreenContainer extends Component {
 
 class PostScreen extends Component {
   componentDidMount() {
-    const { postStore, friendStore } = this.props;
+    const { postStore } = this.props;
     postStore.loadPostList();
   }
+
+  onCommentPress = postId => {
+    const {
+      navigation: { navigate },
+      postStore
+    } = this.props;
+    postStore.setCurrentPost(postId);
+    navigate("PostDetail", { postId });
+  };
 
   renderItem = ({ item }) => {
     const {
@@ -46,6 +59,7 @@ class PostScreen extends Component {
         userName={userName}
         userCompany={userCompany}
         userCompanyCatchPhrase={userCompanyCatchPhrase}
+        onCommentPress={this.onCommentPress}
       />
     );
   };
