@@ -1,3 +1,9 @@
+/**
+|--------------------------------------------------
+| API File to isolate fetch logic for better separation of concerns
+|--------------------------------------------------
+*/
+
 const endpoint = "https://jsonplaceholder.typicode.com/";
 
 class API {
