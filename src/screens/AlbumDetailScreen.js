@@ -20,12 +20,12 @@ export default class AlbumDetailScreenContainer extends Component {
 class AlbumDetailScreen extends Component {
   renderItem = ({ item }) => {
     return (
-      <View>
+      <View style={{alignItems: "center"}}>
         <Image
           source={{ uri: http.convertToHTTPS(item.url) }}
           style={{
-            width: global.screenWidth,
-            height: global.screenWidth
+            width: global.screenWidth * 0.8,
+            height: global.screenWidth * 0.8
           }}
         />
       </View>
