@@ -1,5 +1,10 @@
+/**
+|--------------------------------------------------
+| Screen for a list of articles, each has comments in PostDetailScreen
+|--------------------------------------------------
+*/
 import React, { Component } from "react";
-import { Text, View, FlatList } from "react-native";
+import { FlatList } from "react-native";
 import { Subscribe } from "unstated";
 import PostStore from "../stores/PostStore";
 import ScreenContainer from "../components/ScreenContainer";
@@ -28,6 +33,7 @@ class PostScreen extends Component {
     postStore.loadPostList();
   }
 
+  // Navigation to Postdetail when pressed on the comment button
   onCommentPress = postId => {
     const {
       navigation: { navigate },
@@ -37,6 +43,7 @@ class PostScreen extends Component {
     navigate("PostDetail", { postId });
   };
 
+  // Renders a post in the Flatlist
   renderItem = ({ item }) => {
     const {
       friendStore: {

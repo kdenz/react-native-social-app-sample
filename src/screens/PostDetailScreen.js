@@ -1,3 +1,8 @@
+/**
+|--------------------------------------------------
+| Screen for showing a list of comments for a post
+|--------------------------------------------------
+*/
 import React, { Component } from "react";
 import { Text, View, FlatList } from "react-native";
 import PostStore from "../stores/PostStore";
@@ -29,6 +34,7 @@ class PostDetailScreen extends Component {
     postStore.loadPostComments(navigation.getParam("postId"));
   };
 
+  // Renders the current post info
   renderCurrentItem = ({ item }) => {
     const {
       friendStore: {
@@ -57,6 +63,7 @@ class PostDetailScreen extends Component {
     );
   };
 
+  // Renders a single comment
   renderComment = ({ item }) => {
     return (
       <CommentCard email={item.email} title={item.name} comment={item.body} />
