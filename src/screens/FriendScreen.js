@@ -3,14 +3,15 @@ import { Text, View, FlatList } from "react-native";
 import ScreenContainer from "../components/ScreenContainer";
 import { Subscribe } from "unstated";
 import FriendStore from "../stores/FriendStore";
-import Todo from "../components/Todo";
 import UserBadge from "../components/UserBadge";
 
 export default class FriendScreenContainer extends Component {
   render() {
     return (
       <Subscribe to={[FriendStore]}>
-        {friendStore => <FriendScreen friendStore={friendStore} />}
+        {friendStore => (
+          <FriendScreen friendStore={friendStore} {...this.props} />
+        )}
       </Subscribe>
     );
   }
@@ -24,11 +25,22 @@ class FriendScreen extends Component {
     return (
       <UserBadge
         cardMode
+        userId={item.id}
         userName={item.name}
         userCompany={item.company.name}
         userCompanyCatchPhrase={item.company.catchPhrase}
+        onPress={this.onFriendPress}
       />
     );
+  };
+
+  onFriendPress = userId => {
+    const {
+      navigation: { navigate },
+      friendStore
+    } = this.props;
+    friendStore.setCurrentFriend(userId);
+    navigate("FriendDetail", { userId });
   };
 
   render() {

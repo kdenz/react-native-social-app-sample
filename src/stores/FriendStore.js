@@ -4,7 +4,8 @@ import API from "../services/API";
 class FriendStore extends Container {
   state = {
     friends: [],
-    friendMap: {}
+    friendMap: {},
+    currentFriend: {}
   };
   initializeFriendList = async () => {
     const result = await API.fetchFriendList();
@@ -20,6 +21,13 @@ class FriendStore extends Container {
       friendMap[item.id] = item;
     });
     return friendMap;
+  };
+
+  setCurrentFriend = userId => {
+    const currentFriend = this.state.friendMap[userId];
+    this.setState({
+      currentFriend
+    });
   };
 }
 

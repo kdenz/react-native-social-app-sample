@@ -1,34 +1,41 @@
 import React, { PureComponent } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../styles/theme";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default class UserBadge extends PureComponent {
+  onPress = () => {
+    const { onPress, userId } = this.props;
+    onPress && onPress(userId);
+  };
   render() {
     const {
       userName,
       userCompany,
       userCompanyCatchPhrase,
-      cardMode
+      cardMode,
+      onPress
     } = this.props;
     return (
-      <View style={[styles.userContainer, cardMode ? styles.cardStyle : {}]}>
-        <View style={styles.userAvatar}>
-          <Icon
-            name={"account"}
-            color={"grey"}
-            size={40}
-            style={{ marginTop: 5 }}
-          />
+      <TouchableOpacity disabled={!onPress} onPress={this.onPress}>
+        <View style={[styles.userContainer, cardMode ? styles.cardStyle : {}]}>
+          <View style={styles.userAvatar}>
+            <Icon
+              name={"account"}
+              color={"grey"}
+              size={40}
+              style={{ marginTop: 5 }}
+            />
+          </View>
+          <View style={styles.userInfo}>
+            <Text style={styles.userName}>{userName}</Text>
+            <Text style={styles.userCompany}>{userCompany}</Text>
+            <Text style={styles.userCompanyCatchPhrase}>
+              {userCompanyCatchPhrase}
+            </Text>
+          </View>
         </View>
-        <View style={styles.userInfo}>
-          <Text style={styles.userName}>{userName}</Text>
-          <Text style={styles.userCompany}>{userCompany}</Text>
-          <Text style={styles.userCompanyCatchPhrase}>
-            {userCompanyCatchPhrase}
-          </Text>
-        </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
