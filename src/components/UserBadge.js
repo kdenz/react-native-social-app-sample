@@ -1,3 +1,8 @@
+/**
+|--------------------------------------------------
+| Reusable component for showing the horizontal user banner with some company info
+|--------------------------------------------------
+*/
 import React, { PureComponent } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import theme from "../styles/theme";

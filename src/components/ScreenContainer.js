@@ -1,3 +1,9 @@
+/**
+|--------------------------------------------------
+| Reusable component which is used in most screens if not all
+| for applying the same base stles
+|--------------------------------------------------
+*/
 import React, { Component } from "react";
 import { Text, StyleSheet, ScrollView } from "react-native";
 import theme from "../styles/theme";

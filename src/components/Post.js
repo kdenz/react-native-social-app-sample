@@ -1,7 +1,11 @@
+/**
+|--------------------------------------------------
+| A post component for the PostScreen and AlbumScreen
+|--------------------------------------------------
+*/
 import React, { Component } from "react";
 import { Text, StyleSheet, View, TouchableOpacity } from "react-native";
 import theme from "../styles/theme";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import PhotoThumbnails from "./PhotoThumbnails";
 import UserBadge from "./UserBadge";
 

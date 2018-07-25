@@ -1,3 +1,8 @@
+/**
+|--------------------------------------------------
+| Reusable component to be used in Post.js for AlbumScreen
+|--------------------------------------------------
+*/
 import React, { PureComponent } from "react";
 import { View, StyleSheet, Image } from "react-native";
 import http from "../utils/http";

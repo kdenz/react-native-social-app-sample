@@ -1,3 +1,8 @@
+/**
+|--------------------------------------------------
+| Reusable component for UserProfile to display cards of user info fields
+|--------------------------------------------------
+*/
 import React, { PureComponent } from "react";
 import { Text, StyleSheet, View } from "react-native";
 

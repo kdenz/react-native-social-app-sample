@@ -1,3 +1,8 @@
+/**
+|--------------------------------------------------
+| Reusable component for creating a todo item
+|--------------------------------------------------
+*/
 import React, { PureComponent } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";

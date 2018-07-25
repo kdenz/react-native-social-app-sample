@@ -1,3 +1,8 @@
+/**
+|--------------------------------------------------
+| Reusable component for display of a user profile page
+|--------------------------------------------------
+*/
 import React, { PureComponent } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import ScreenContainer from "./ScreenContainer";
