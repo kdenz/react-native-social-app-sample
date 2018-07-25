@@ -1,5 +1,10 @@
+/**
+|--------------------------------------------------
+| Screen for album detail page, which shows the list of images within an album
+|--------------------------------------------------
+*/
 import React, { Component } from "react";
-import { Text, View, FlatList, Image } from "react-native";
+import { View, FlatList, Image } from "react-native";
 import PhotoStore from "../stores/PhotoStore";
 import ScreenContainer from "../components/ScreenContainer";
 import { Subscribe } from "unstated";

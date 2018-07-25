@@ -1,3 +1,9 @@
+/**
+|--------------------------------------------------
+| Screen component for the Album Tab Screen
+| Shows a social feed of albums
+|--------------------------------------------------
+*/
 import React, { Component } from "react";
 import { Text, View, FlatList } from "react-native";
 import PhotoStore from "../stores/PhotoStore";
@@ -28,6 +34,7 @@ class AlbumScreen extends Component {
     photoStore.initializePhotoStore();
   }
 
+  // Renders a single album item
   renderItem = ({ item }) => {
     const {
       friendStore: {
@@ -37,8 +44,11 @@ class AlbumScreen extends Component {
         state: { photoMap }
       }
     } = this.props;
+
+    // User Info for the author of an album
     const userItem = friendMap[item.userId];
 
+    // If an author exists for an album, show the info
     let userName, userCompany, userCompanyCatchPhrase;
     if (userItem) {
       userName = userItem.username;
@@ -62,6 +72,7 @@ class AlbumScreen extends Component {
     );
   };
 
+  // Sets the selected album and navigate to it
   onAlbumPress = albumId => {
     const {
       navigation: { navigate },
