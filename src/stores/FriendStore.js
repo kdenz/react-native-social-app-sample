@@ -5,7 +5,7 @@ class FriendStore extends Container {
   state = {
     friends: [],
     friendMap: {},
-    currentFriend: {}
+    currentFriend: null
   };
   initializeFriendList = async () => {
     const result = await API.fetchFriendList();

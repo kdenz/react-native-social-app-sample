@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, FlatList, Image } from "react-native";
 import { Subscribe } from "unstated";
-import http from "../utils/http";
 import UserProfile from "../components/UserProfile";
 import FriendStore from "../stores/FriendStore";
 
@@ -21,8 +20,9 @@ class FriendDetailScreen extends Component {
   render() {
     const { friendStore } = this.props;
     const currentFriend = friendStore.state.currentFriend;
+    
     return (
-      <UserProfile
+      currentFriend && <UserProfile
         name={currentFriend.name}
         companyName={currentFriend.company.name}
         companyCatchPhrase={currentFriend.company.catchPhrase}
