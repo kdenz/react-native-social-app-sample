@@ -11,7 +11,11 @@ export default class AlbumScreenContainer extends Component {
     return (
       <Subscribe to={[PhotoStore, FriendStore]}>
         {(photoStore, friendStore) => (
-          <AlbumScreen photoStore={photoStore} friendStore={friendStore} />
+          <AlbumScreen
+            photoStore={photoStore}
+            friendStore={friendStore}
+            {...this.props}
+          />
         )}
       </Subscribe>
     );
@@ -47,14 +51,24 @@ class AlbumScreen extends Component {
 
     return (
       <Post
-        albumId={item.id}
+        postId={item.id}
         photos={photos}
         title={item.title}
         userName={userName}
         userCompany={userCompany}
         userCompanyCatchPhrase={userCompanyCatchPhrase}
+        onPostPress={this.onAlbumPress}
       />
     );
+  };
+
+  onAlbumPress = albumId => {
+    const {
+      navigation: { navigate },
+      photoStore
+    } = this.props;
+    photoStore.setCurrentAlbum(albumId);
+    navigate("AlbumDetail", { albumId });
   };
 
   render() {

@@ -5,7 +5,7 @@ class PhotoStore extends Container {
   state = {
     albums: [],
     photoMap: {},
-    currentPhotos: []
+    currentAlbum: []
   };
 
   initializePhotoStore = async () => {
@@ -33,11 +33,8 @@ class PhotoStore extends Container {
     };
   };
 
-  loadPhotos = async albumId => {
-    const result = await API.fetchPhotos(albumId);
-    this.setState({
-      currentPhotos: result
-    });
+  setCurrentAlbum = albumId => {
+    this.setState({ currentAlbum: this.state.photoMap[albumId] });
   };
 }
 

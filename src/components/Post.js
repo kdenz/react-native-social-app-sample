@@ -10,6 +10,12 @@ export default class Post extends Component {
     const { postId, onCommentPress } = this.props;
     onCommentPress && onCommentPress(postId);
   };
+
+  onPostPress = () => {
+    const { postId, onPostPress } = this.props;
+    onPostPress && onPostPress(postId);
+  };
+
   render() {
     const {
       title,
@@ -18,30 +24,33 @@ export default class Post extends Component {
       userCompany,
       userCompanyCatchPhrase,
       photos,
-      hideCommentButton
+      hideCommentButton,
+      onPostPress
     } = this.props;
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}> {title} </Text>
-        {photos ? (
-          <PhotoThumbnails photos={photos} />
-        ) : (
-          <Text style={styles.desc}> {desc} </Text>
-        )}
+      <TouchableOpacity disabled={!onPostPress} onPress={this.onPostPress}>
+        <View style={styles.container}>
+          <Text style={styles.title}> {title} </Text>
+          {photos ? (
+            <PhotoThumbnails photos={photos} />
+          ) : (
+            <Text style={styles.desc}> {desc} </Text>
+          )}
 
-        <UserBadge
-          userName={userName}
-          userCompany={userCompany}
-          userCompanyCatchPhrase={userCompanyCatchPhrase}
-        />
-        {photos || hideCommentButton ? null : (
-          <TouchableOpacity onPress={this.onCommentPress}>
-            <View style={styles.commentButton}>
-              <Text style={styles.commentText}>Comment(s)</Text>
-            </View>
-          </TouchableOpacity>
-        )}
-      </View>
+          <UserBadge
+            userName={userName}
+            userCompany={userCompany}
+            userCompanyCatchPhrase={userCompanyCatchPhrase}
+          />
+          {photos || hideCommentButton ? null : (
+            <TouchableOpacity onPress={this.onCommentPress}>
+              <View style={styles.commentButton}>
+                <Text style={styles.commentText}>Comment(s)</Text>
+              </View>
+            </TouchableOpacity>
+          )}
+        </View>
+      </TouchableOpacity>
     );
   }
 }
