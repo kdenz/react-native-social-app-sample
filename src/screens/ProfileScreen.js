@@ -1,3 +1,8 @@
+/**
+|--------------------------------------------------
+| Screen with hardcoded data just to make the app more complete
+|--------------------------------------------------
+*/
 import React, { Component } from "react";
 import UserProfile from "../components/UserProfile";
 

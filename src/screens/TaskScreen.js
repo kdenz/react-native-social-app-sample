@@ -1,3 +1,8 @@
+/**
+|--------------------------------------------------
+| Screen for a read-only todolist
+|--------------------------------------------------
+*/
 import React, { Component } from "react";
 import { Text, View, FlatList } from "react-native";
 import ScreenContainer from "../components/ScreenContainer";
