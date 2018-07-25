@@ -1,3 +1,8 @@
+/**
+|--------------------------------------------------
+| Screen for showing a list of current friends
+|--------------------------------------------------
+*/
 import React, { Component } from "react";
 import { Text, View, FlatList } from "react-native";
 import ScreenContainer from "../components/ScreenContainer";
@@ -18,9 +23,6 @@ export default class FriendScreenContainer extends Component {
 }
 
 class FriendScreen extends Component {
-  componentDidMount() {
-    const { friendStore } = this.props;
-  }
   renderItem = ({ item }) => {
     return (
       <UserBadge
@@ -34,6 +36,7 @@ class FriendScreen extends Component {
     );
   };
 
+  // Set the selected friend object and navigate to it
   onFriendPress = userId => {
     const {
       navigation: { navigate },

@@ -1,5 +1,9 @@
+/**
+|--------------------------------------------------
+| Screen for friends detail page, which shows detailed user info for a friend
+|--------------------------------------------------
+*/
 import React, { Component } from "react";
-import { Text, View, FlatList, Image } from "react-native";
 import { Subscribe } from "unstated";
 import UserProfile from "../components/UserProfile";
 import FriendStore from "../stores/FriendStore";
