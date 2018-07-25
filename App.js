@@ -1,3 +1,10 @@
+/**
+|--------------------------------------------------
+| Entry point for the app
+| Contains routing and config for react-navigation
+| Provider wraps around Navigator to enable state management by unstated
+|--------------------------------------------------
+*/
 import React from "react";
 import { Dimensions } from "react-native";
 
@@ -24,6 +31,8 @@ const { height, width } = Dimensions.get("window");
 
 global.screenHeight = height;
 global.screenWidth = width;
+
+// Mapping for icons to use corresponding to certain routes
 const bottomNavIconMap = {
   Posts: "message-outline",
   Albums: "image-multiple",
@@ -32,6 +41,7 @@ const bottomNavIconMap = {
   Profile: "account"
 };
 
+// Setup for bottom tab navigation
 const BottomTabNav = createBottomTabNavigator(
   {
     Posts: {
@@ -79,6 +89,15 @@ const BottomTabNav = createBottomTabNavigator(
   }
 );
 
+const topNavBarStyle = {
+  headerTintColor: theme.PRIMARY_COLOR,
+  headerStyle: {
+    backgroundColor: theme.SECONDARY_COLOR,
+    borderBottomColor: theme.SECONDARY_COLOR
+  }
+}
+
+// Setup for App-wide top-level navigation
 const AppNavigator = createStackNavigator({
   Main: {
     screen: BottomTabNav,
@@ -88,42 +107,28 @@ const AppNavigator = createStackNavigator({
     screen: PostDetailScreen,
     navigationOptions: ({ navigation }) => ({
       title: "Post Detail",
-      headerTintColor: theme.PRIMARY_COLOR,
-      // headerTintColor: "white",
-      headerStyle: {
-        backgroundColor: theme.SECONDARY_COLOR,
-        borderBottomColor: theme.SECONDARY_COLOR
-      }
+      ...topNavBarStyle
     })
   },
   AlbumDetail: {
     screen: AlbumDetailScreen,
     navigationOptions: ({ navigation }) => ({
       title: "Album Detail",
-      headerTintColor: theme.PRIMARY_COLOR,
-      // headerTintColor: "white",
-      headerStyle: {
-        backgroundColor: theme.SECONDARY_COLOR,
-        borderBottomColor: theme.SECONDARY_COLOR
-      }
+      ...topNavBarStyle
     })
   },
   FriendDetail: {
     screen: FriendDetailScreen,
     navigationOptions: ({ navigation }) => ({
       title: "Friend Detail",
-      headerTintColor: theme.PRIMARY_COLOR,
-      // headerTintColor: "white",
-      headerStyle: {
-        backgroundColor: theme.SECONDARY_COLOR,
-        borderBottomColor: theme.SECONDARY_COLOR
-      }
+      ...topNavBarStyle
     })
   }
 });
 
 export default class App extends React.Component {
   componentDidMount() {
+    // Downloads the user list so it can be used throughout the app 
     FriendStore.initializeFriendList();
   }
   render() {
